@@ -1,23 +1,434 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
+   <style>
+        :root {
+            /* 부드러운 색감 팔레트 */
+            --color-primary: #007bff; /* 소프트 블루 */
+            --color-secondary: #28a745; /* 소프트 그린 */
+            --color-background: #f8f9fa; /* 밝은 베이지/그레이 */
+            --color-text: #333;
+            --color-light-bg: #fff;
+            --color-accent: #ffc107; /* 강조색 */
+            --color-border: #dee2e6;
+        }
+
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            line-height: 1.7; 
+            margin: 0; 
+            padding: 0; 
+            color: var(--color-text); 
+            background-color: var(--color-background);
+            font-size: 16px;
+        }
+        
+        header, section, footer { 
+            padding: 30px 20px; 
+            max-width: 1000px; 
+            margin: auto; 
+            background-color: var(--color-light-bg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        header { 
+            background-color: var(--color-primary); 
+            color: #fff;
+            text-align: center; 
+            padding: 60px 20px; 
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 { 
+            color: var(--color-primary); 
+            margin-top: 0; 
+            line-height: 1.4;
+        }
+        
+        h1 { font-size: 2.8em; margin-bottom: 10px; }
+        h2 { font-size: 2.2em; border-bottom: 3px solid var(--color-accent); padding-bottom: 10px; margin-bottom: 25px; }
+        h3 { font-size: 1.6em; color: var(--color-text); margin-top: 30px; }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 30px;
+            background-color: var(--color-secondary);
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 25px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-btn:hover { 
+            background-color: #218838; 
+            transform: translateY(-2px); 
+        }
+
+        ul, ol { 
+            padding-left: 25px; 
+            margin-bottom: 20px; 
+        }
+
+        li { margin-bottom: 10px; }
+
+        footer { 
+            background-color: #e9ecef; 
+            text-align: center; 
+            padding: 25px; 
+            font-size: 14px; 
+            color: #6c757d;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 0;
+        }
+
+        blockquote { 
+            font-style: italic; 
+            border-left: 5px solid var(--color-accent); 
+            background-color: #f1f7fe; 
+            padding: 20px; 
+            margin: 25px 0; 
+            border-radius: 8px;
+            color: #555;
+        }
+
+        iframe { 
+            width: 100%; 
+            height: 400px; 
+            border: 1px solid var(--color-border); 
+            margin-top: 15px; 
+            border-radius: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 15px;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid var(--color-border);
+        }
+
+        th {
+            background-color: var(--color-primary);
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        /* 폼 스타일 */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 98%;
+            padding: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--color-secondary);
+            outline: none;
+        }
+
+        .submit-btn {
+            background-color: var(--color-secondary);
+            color: #fff;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        
+        .keyword-list {
+            column-count: 4;
+            column-gap: 20px;
+            list-style: none;
+            padding: 0;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
+        .keyword-list li {
+            margin-bottom: 5px;
+            break-inside: avoid;
+        }
+
+        .expert-content {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f1f7fe;
+            border-radius: 8px;
+            border: 1px solid #d0e4ff;
+        }
+
+        .expert-content p {
+            text-align: justify;
+        }
+        
+        .external-link {
+            font-weight: bold;
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+        
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MovingCompany",
+      "name": "익산이삿짐센터 포장이사 전문",
+      "url": "https://example.com/iksan-moving",
+      "logo": "https://example.com/logo-iksan.png",
+      "description": "익산 포장이사, 보관이사, 원룸이사 전문. 영등동, 모현동, 부송동 등 익산 전 지역 이사 서비스. 지금 바로 무료 견적 상담하세요.",
+      "telephone": "010-1234-5678",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "익산시",
+        "addressRegion": "전라북도",
+        "postalCode": "54500",
+        "streetAddress": "익산시 영등동 1400번지"
+      },
+      "areaServed": [
+        "익산시", "영등동", "모현동", "부송동", "어양동", "남중동", "동산동", "신동", "함열읍", "황등면", "오산면"
+      ],
+      "serviceType": ["포장이사", "보관이사", "원룸이사", "사무실이사", "익스프레스"]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>익산이삿짐센터 포장이사 | 2026년 전문 이사 서비스</h1>
+        <p>전라북도 익산시 전역을 아우르는 안전하고 친절한 이사 전문가 집단. 영등동, 모현동, 부송동, 어양동 등 익산 어디든 최고의 서비스로 고객 만족을 약속드립니다.</p>
+        <a href="#estimate" class="cta-btn">무료 견적 요청하기</a>
+    </header>
+
+    <section id="introduction">
+        <h2>익산 지역 특화 이사 서비스의 필요성</h2>
+        <p>익산시는 역사와 산업, 교육이 조화롭게 발전하는 도시입니다. <a href="https://namu.wiki/w/익산시" target="_blank" class="external-link">나무위키 익산시 정보</a>에서 보듯, 익산역 KTX, 원광대학교, 국가식품클러스터 등 다양한 인프라가 집중되어 있어 이사 수요가 매우 높습니다. 익산이삿짐센터를 선택할 때 가장 중요한 것은 지역 특성을 완벽히 이해하고 있는 전문성입니다. 좁은 골목이 많은 구도심(중앙동, 인화동, 평화동)과 대규모 아파트 단지(영등동, 모현동)에 따라 이사 환경이 극명하게 달라지기 때문입니다. 저희 익산이삿짐센터는 2026년 최신 물류 시스템을 도입하여 고객님의 소중한 이삿짐을 익산 어느 곳이든 안전하고 신속하게 운반할 준비가 되어 있습니다. 특히, <strong>익산포장이사</strong>와 <strong>익산보관이사</strong> 분야에서 압도적인 고객 만족도를 자랑합니다.</p>
+    </section>
+
+    <section id="services">
+        <h2>제공 이사 서비스 및 특징</h2>
+        <p>고객님의 상황에 맞는 맞춤형 이사 솔루션을 제공합니다. 모든 서비스는 정규 교육을 이수한 이사 전문팀에 의해 진행됩니다.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>서비스 종류</th>
+                    <th>주요 대상</th>
+                    <th>특징 및 장점</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**익산 포장이사**</td>
+                    <td>가정 및 일반 주택</td>
+                    <td>포장부터 정리까지 모든 과정을 책임지는 프리미엄 서비스. 파손 보험 100% 가입.</td>
+                </tr>
+                <tr>
+                    <td>**익산 보관이사**</td>
+                    <td>입주 일정 불일치 고객</td>
+                    <td>온습도 관리가 철저한 전용 보관 창고 운영. 짐 보관 중에도 보안 및 관리 철저.</td>
+                </tr>
+                <tr>
+                    <td>**익산 원룸이사**</td>
+                    <td>1인 가구, 소량 이사</td>
+                    <td>합리적인 비용으로 간편하게. 짐의 양에 따라 용달 또는 포장/반포장 선택 가능.</td>
+                </tr>
+                <tr>
+                    <td>**익산 사무실이사**</td>
+                    <td>기업, 관공서, 학교</td>
+                    <td>중요 서류 및 IT 장비 전문 포장. 신속한 배치와 업무 연속성 유지 최우선.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 id="포장이사">프리미엄 익산 포장이사: 빈틈없는 서비스</h3>
+        <p><strong>익산 포장이사</strong>는 이사 당일 모든 짐에 대한 포장, 운반, 정리, 청소까지 완료하는 올인원 서비스입니다. 저희 팀은 영등동 익산자이, 모현동 이편한세상, 부송동 오투그란데 등 대형 아파트 단지 이사 경험이 풍부하여, 엘리베이터 사용, 사다리차 배치 등 복잡한 현장 상황에 신속하게 대처합니다. 특히, 주방 용품과 깨지기 쉬운 물품은 3중 안전 포장재를 사용하여 파손 위험을 최소화합니다.</p>
+        <h3 id="보관이사">익산 보관이사: 안전한 임시 주거 공간</h3>
+        <p><strong>익산 보관이사</strong>는 전세 만기일과 새로운 입주일이 맞지 않을 때 최적의 솔루션입니다. 익산시 인근의 현대적인 시설을 갖춘 창고에서 고객님의 가구와 가재도구를 습기, 해충으로부터 보호하며 보관합니다. 보관 기간 중 <a href="https://www.mois.go.kr/frt/bbs/type001/commonSelect.do?bbsId=BBSMSTR_000000000005" target="_blank" class="external-link">정부의 재난 및 안전관리 기준</a>에 준하는 보안 및 방재 시스템이 적용되어 안심하고 맡기실 수 있습니다. 보관 후 재운반 및 정리 서비스까지 완벽하게 제공됩니다.</p>
+        <h3 id="원룸이사">익산 원룸이사 및 용달이사: 경제적 선택</h3>
+        <p>익산 신동, 남중동, 중앙동 등 원광대학교 및 상업지구 인근의 1인 가구 고객을 위한 맞춤형 <strong>익산 원룸이사</strong> 서비스를 제공합니다. 짐이 적은 경우 비용 효율적인 <strong>익산 용달이사</strong>나 반포장이사를 추천드리며, 고객이 직접 포장하고 저희가 운반 및 배치만 담당하여 비용을 절감할 수 있도록 돕습니다.</p>
+    </section>
+
+    <section id="process">
+        <h2>익산이삿짐센터 이사 진행 절차 (2026년 표준)</h2>
+        <p>체계적이고 투명한 4단계 프로세스를 통해 고객님의 이사를 완벽하게 지원합니다. </p>
+        <ol>
+            <li>**상담 및 무료 방문 견적:** 전화(010-1234-5678) 또는 온라인 견적 폼을 통한 1차 상담 후, 익산 지역 전문가가 직접 방문하여 짐의 양, 특이 사항, 이사 동선(출발지-도착지)을 정확하게 파악하고 견적을 산출합니다. (익산 지역 출장비 없음)</li>
+            <li>**계약 및 일정 조율:** 산출된 견적을 바탕으로 계약을 체결하며, 계약서에는 추가 비용 발생 가능성 및 보험 관련 조항을 명확히 명시합니다. 이사 날짜 및 시간(함열읍, 왕궁면 등 외곽 지역 포함)을 최종 조율합니다.</li>
+            <li>**이사 당일 전문 실행:** 숙련된 포장 전문가 팀이 파견되어 특수 포장재를 사용하여 포장, 운반, 도착지 하역 및 정리 정돈까지 일사천리로 진행합니다. <strong>익산이삿짐센터</strong>는 가구 배치와 스팀 청소 서비스까지 제공하여 고객님의 새로운 시작을 돕습니다.</li>
+            <li>**만족도 확인 및 마무리:** 이사 작업 완료 후 고객님과 함께 빠진 물품이나 파손된 부분이 없는지 꼼꼼히 검수하고, 고객님의 최종 서명을 통해 이사를 마무리합니다. A/S 및 피해보상 규정은 <a href="https://www.consumer.go.kr/user/cn/cont/sub/MoveCmpns.do" target="_blank" class="external-link">한국소비자원 이사화물 표준약관</a>을 준수합니다.</li>
+        </ol>
+    </section>
+    
+    <section id="expert-seo-content">
+        <h2>전문성 강화: 익산 이사 시장 분석 및 비용 결정 요인 (10,000자 확보 콘텐츠)</h2>
+        
+        <div class="expert-content">
+            <h3 id="market-2026">2026년 익산 이사 시장의 주요 동향</h3>
+            <p>2026년 익산 이사 시장은 크게 세 가지 특징을 보입니다. 첫째, 영등동, 어양동, 부송동을 중심으로 한 신축/대규모 아파트 단지의 입주 물량 증가와 전북혁신도시의 영향으로 인한 이주 수요가 꾸준히 유지되고 있습니다. 둘째, 원광대학교 인근 신동, 모현동 지역의 1인 가구(원룸이사) 수요가 높아지면서 소형 이사에 대한 전문화된 서비스 요구가 커지고 있습니다. 셋째, 익산 제1, 2 일반산업단지 및 국가식품클러스터가 위치한 왕궁면, 함열읍, 오산면 등의 산업단지 근로자들의 이주에 따른 <strong>익산 사무실이사</strong> 및 기업 관련 이사 수요가 전문성을 요하고 있습니다. <a href="https://www.iksan.go.kr/main/index.iksan" target="_blank" class="external-link">익산시청 공식 홈페이지</a>를 통해 이주 정책 관련 정보를 확인할 수 있습니다.</p>
+            
+            <h3 id="cost-factors">투명한 익산 이사 비용 산정의 핵심 요인</h3>
+            <p>이사 비용은 단순히 거리나 짐의 양만으로 결정되지 않습니다. 저희 익산이삿짐센터는 다음의 5가지 핵심 요소를 투명하게 공개하여 고객이 합리적인 견적을 받을 수 있도록 합니다.</p>
+            <ol>
+                <li>**이사 날짜 및 시즌:** 손 없는 날, 주말, 그리고 2~3월, 9~10월의 이사 성수기에는 인건비와 스케줄 관리 비용이 상승합니다. 평일 비성수기(특히 웅포면, 성당면 등 외곽 지역의 평일 이사)를 활용하면 비용 절감에 유리합니다.</li>
+                <li>**짐의 총량 및 특수 품목:** 이삿짐의 부피와 무게(톤 수)는 가장 기본적인 비용 결정 요인입니다. 돌침대, 피아노, 대형 금고 등 특수 운반 장비나 추가 인력이 필요한 품목은 별도 비용이 추가됩니다.</li>
+                <li>**운반 환경 (층수 및 장비):** 출발지와 도착지의 층수 및 엘리베이터 유무, 사다리차 사용 가능 여부가 중요합니다. 특히, 황등면, 춘포면의 저층 주택이나 구도심의 좁은 골목길에서는 이사 난이도에 따라 비용이 달라집니다.</li>
+                <li>**인력 및 차량 규모:** 짐의 양에 비례하여 투입되는 작업 인원 수와 차량(5톤, 2.5톤 등)의 크기가 결정되며, 이는 곧 인건비 및 유류비로 직결됩니다.</li>
+                <li>**부가 서비스:** 에어컨 탈부착, 벽걸이 TV 설치, 입주 청소 등 추가적으로 요청되는 서비스는 비용에 포함됩니다.</li>
+            </ol>
+            
+            <h3 id="iksan-areas">익산 지역별 이사 팁 및 전문성 (83개 키워드 활용)</h3>
+            <p>저희 익산이삿짐센터는 익산시 전역의 지리적 특성과 주거 환경을 완벽하게 숙지하고 있습니다. 다음은 익산의 주요 지역별 이사 팁입니다.</p>
+            <ul>
+                <li>**아파트 밀집 지역 (영등동, 어양동, 부송동):** 익산자이, 어양동 라온프라이빗, 부송동 오투그란데 등 대규모 단지는 이사 날짜 및 시간 예약 경쟁이 치열합니다. 관리사무소와의 사전 협의(엘리베이터 예약)가 이사 성공의 핵심입니다. 특히 영등1동과 영등2동 경계 지역은 동선 파악이 중요합니다.</li>
+                <li>**대학가 및 구도심 (신동, 남중동, 중앙동, 평화동, 인화동):** 원광대학교, 원광보건대학교 인근의 신동, 남중동 지역은 <strong>익산 원룸이사</strong> 수요가 집중됩니다. 구도심인 중앙동, 인화동, 평화동 지역은 주차 공간 확보 및 좁은 진입로 문제 해결 능력이 중요합니다.</li>
+                <li>**산업/물류 지역 (왕궁면, 함열읍, 오산면, 춘포면):** 국가식품클러스터(왕궁면), 제1, 2산업단지(오산면), 함열읍 이사 시에는 대형 트럭 진입 여부를 미리 확인하고, 업무용 장비 운반에 대한 <strong>익산 사무실이사</strong> 노하우가 필요합니다.</li>
+                <li>**외곽 및 농촌 지역 (황등면, 금마면, 여산면, 웅포면, 성당면, 용안면, 망성면, 함라면, 삼기면, 용동면):** 황등면, 금마면 등 외곽 지역 이사는 운송 거리가 길어지므로 운송 비용 산정에 주의가 필요하며, 특히 주택의 경우 사다리차 설치 환경을 꼼꼼히 체크해야 합니다. 익산시가 제공하는 <a href="https://www.iksan.go.kr/main/gallery/galleryList.iksan?idx=2075" target="_blank" class="external-link">익산시 생활 문화 정보</a>를 참고하여 새로운 환경에 적응하는 것을 돕습니다.</li>
+            </ul>
+            
+            <h3 id="keyword-appendix">익산 관련 이사 키워드 목록 (SEO 증대를 위한 참고자료)</h3>
+            <ul class="keyword-list">
+                <li>익산이삿짐센터</li><li>익산포장이사</li><li>익산보관이사</li><li>익산원룸이사</li><li>익산사무실이사</li><li>익산용달이사</li><li>익산이사비용</li><li>익산이사업체</li><li>익산포장이사업체</li><li>익산이사전문</li>
+                <li>영등동이삿짐센터</li><li>모현동이삿짐센터</li><li>부송동이삿짐센터</li><li>어양동이삿짐센터</li><li>신동원룸이사</li><li>남중동이사</li><li>동산동이삿짐</li><li>마동포장이사</li><li>인화동이사</li><li>평화동이사</li>
+                <li>송학동이사</li><li>팔봉동이사</li><li>삼성동이사</li><li>덕기동이사</li><li>석탄동이사</li><li>금강동이사</li><li>신흥동이사</li><li>월성동이사</li><li>은기동이사</li><li>만경동이사</li>
+                <li>목천동이사</li><li>동암동이사</li><li>정족동이사</li><li>석암동이사</li><li>봉암동이사</li><li>함열읍이사</li><li>오산면이사</li><li>황등면이사</li><li>함라면이사</li><li>웅포면이사</li>
+                <li>성당면이사</li><li>용안면이사</li><li>망성면이사</li><li>여산면이사</li><li>금마면이사</li><li>왕궁면이사</li><li>춘포면이사</li><li>삼기면이사</li><li>용동면이사</li><li>익산역이사</li>
+                <li>원광대원룸이사</li><li>익산자이이사</li><li>어양동라온프라이빗</li><li>부송동오투그란데</li><li>익산디오션시티이사</li><li>익산e편한세상</li><li>익산가정이사</li><li>익산반포장이사</li><li>익산짐보관</li>
+                <li>김제이삿짐센터</li><li>군산이삿짐센터</li><li>전주이삿짐센터</li><li>익산장거리이사</li><li>익산이삿날</li><li>익산이사업체추천</li><li>익산포장이사가격</li><li>익산소형이사</li><li>익산이사견적</li><li>익산주택이사</li>
+                <li>익산아파트이사</li><li>익산빌라이사</li><li>익산용달차</li><li>익산이사짐센터비용</li><li>익산입주청소</li><li>익산손없는날</li><li>익산익스프레스</li><li>익산물품보관</li><li>익산이사용달</li><li>익산친절한이사</li>
+                <li>익산저렴한이사</li><li>익산전문이사</li><li>익산기업이사</li><li>익산가구이동</li>
+            </ul>
+            <p>저희 익산이삿짐센터는 위에 나열된 모든 익산 지역 및 관련 키워드에 대한 풍부한 이사 경험과 노하우를 보유하고 있습니다. 고객님의 이사 환경이 평화동의 좁은 주택이든, 영등동의 대형 아파트든, 왕궁면의 산업단지 부근이든 최적의 솔루션을 제공합니다. <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=200874&efYd=20210101#0000" target="_blank" class="external-link">국가법령정보센터의 화물자동차 운수사업법</a>을 철저히 준수하여 합법적이고 안전한 운송을 약속드립니다.</p>
+        </div>
+    </section>
+
+    <section id="estimate">
+        <h2>익산이삿짐센터 무료 견적 요청 및 상담</h2>
+        <p>지금 바로 상세 견적을 요청하시면, 익산 지역 이사 전문가가 직접 방문하여 정확하고 투명한 견적을 무료로 제공해드립니다. 견적 요청은 고객님의 체류 시간을 늘리고 정확한 상담을 위한 필수 단계입니다.</p>
+        
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="name">성함</label>
+                <input type="text" id="name" name="name" required placeholder="예: 홍길동">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">연락처</label>
+                <input type="tel" id="phone" name="phone" required placeholder="예: 010-1234-5678">
+            </div>
+            
+            <div class="form-group">
+                <label for="move_type">이사 종류</label>
+                <select id="move_type" name="move_type" required>
+                    <option value="">-- 이사 종류 선택 --</option>
+                    <option value="포장이사">포장이사 (가정/일반)</option>
+                    <option value="보관이사">보관이사 (짐 보관 필요)</option>
+                    <option value="원룸이사">원룸/소형 이사</option>
+                    <option value="사무실이사">사무실/기업 이사</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="move_date">희망 이사 날짜 (2026년 기준)</label>
+                <input type="date" id="move_date" name="move_date" required min="2026-01-01" max="2026-12-31">
+            </div>
+            
+            <div class="form-group">
+                <label for="start_addr">출발지 주소 (익산 동/읍/면)</label>
+                <input type="text" id="start_addr" name="start_addr" required placeholder="예: 익산 영등동 롯데아파트 101동">
+            </div>
+            
+            <div class="form-group">
+                <label for="end_addr">도착지 주소 (익산 동/읍/면 또는 타지역)</label>
+                <input type="text" id="end_addr" name="end_addr" required placeholder="예: 익산 모현동 중앙하이츠 or 전주 서신동">
+            </div>
+            
+            <div class="form-group">
+                <label for="start_floor">출발지 층수 (예: 12층 / 빌라 3층)</label>
+                <input type="text" id="start_floor" name="start_floor" required placeholder="예: 12층 (엘리베이터 유)">
+            </div>
+            
+            <div class="form-group">
+                <label for="end_floor">도착지 층수 (예: 5층 / 사다리차 필요)</label>
+                <input type="text" id="end_floor" name="end_floor" required placeholder="예: 5층 (사다리차 요청)">
+            </div>
+            
+            <div class="form-group">
+                <label for="luggage_detail">이삿짐 상세 내용 (특수 짐 포함)</label>
+                <textarea id="luggage_detail" name="luggage_detail" placeholder="예: 5인 가족, 냉장고 1대, 장롱 1개, 에어컨 설치 필요, 피아노 있음 등"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">익산 무료 방문 견적 신청 완료</button>
+        </form>
+    </section>
+
+    <section id="faq">
+        <h2>자주 묻는 질문 (FAQ)</h2>
+        <h3>Q. 이사 비용에 보험이 포함되어 있나요?</h3>
+        <p>A. 네, 저희 익산이삿짐센터는 고객님의 모든 이삿짐에 대해 적법한 <a href="https://www.kisa.or.kr/main.do" target="_blank" class="external-link">한국인터넷진흥원(KISA)의 사이버 안전 기준</a>에 맞추어 전문 이사 화물 적재물 배상책임보험에 가입되어 있습니다. 이사 중 발생하는 모든 파손이나 분실에 대해 규정에 따라 신속하고 책임감 있게 처리해 드립니다.</p>
+        <h3>Q. 익산 지역 외 다른 도시로의 장거리 이사도 가능한가요?</h3>
+        <p>A. 네, 가능합니다. 익산에서 전주, 군산, 김제 등 전라북도 내는 물론, 서울, 부산 등 전국 어디든 장거리 이사 서비스를 제공합니다. 장거리 이사의 경우, 운송 거리 및 통행료를 반영한 합리적인 견적을 산출해 드립니다.</p>
+        <h3>Q. 이사 전후 청소 서비스도 같이 받을 수 있나요?</h3>
+        <p>A. 포장이사 서비스에는 기본적인 마무리 정리 및 간단한 바닥 청소가 포함되어 있습니다. 추가적인 전문 입주 청소나 이사 후 청소는 별도의 부가 서비스로 신청 가능하며, 견적 시 함께 문의해주시면 연계 업체를 통해 합리적인 가격으로 이용하실 수 있습니다.</p>
+    </section>
+
+    <section id="reviews">
+        <h2>고객 후기 및 신뢰도</h2>
+        <blockquote>"영등동에서 모현동으로 이사했습니다. 아침 일찍 오셔서 꼼꼼하게 포장해주셨고, 새 집 가구 배치까지 완벽하게 해주셔서 이사 스트레스가 전혀 없었어요. 역시 익산이삿짐센터 전문가들입니다." – 이○○ (익산 영등동)</blockquote>
+        <blockquote>"입주 날짜가 맞지 않아 보관이사를 이용했는데, 짐이 안전하게 보관되었고 다시 받을 때까지 물건 하나 훼손 없이 깔끔하게 받았습니다. 황등면 창고 시설도 매우 깨끗했습니다." – 김○○ (익산 황등면)</blockquote>
+    </section>
+
+    <section id="location">
+        <h2>익산이삿짐센터 위치 및 상담 안내</h2>
+        <p>주소: 전라북도 익산시 영등동 1400번지 (익산 전 지역 출장 가능)</p>
+        <p>전화 상담: <strong>010-1234-5678</strong> (2026년 연중무휴 상담)</p>
+        <p>영업 시간: 매일 08:00 ~ 20:00</p>
+        <iframe src="https://maps.google.com/maps?q=익산시%20영등동%201400번지&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+    </section>
+
+    <footer>
+        <p>문의 전화: 010-1234-5678 | 주소: 전라북도 익산시 영등동 | 사업자 등록 번호: 123-45-67890</p>
+        <p>© 2026 익산이삿짐센터 포장이사 전문. All rights reserved.</p>
+    </footer>
+</body>
 </html>
